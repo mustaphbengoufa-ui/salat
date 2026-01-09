@@ -64,3 +64,4 @@ function gettime() {
 
   console.log("Your real city is:", city);
 });
+getlocaion()
