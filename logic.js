@@ -1,31 +1,23 @@
 let country;
 let city;
-//get locaion
-navigator.geolocation.getCurrentPosition(async (position) => {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
 
-  const res = await fetch(
-    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
-  );
-  const data = await res.json();
-city=data.address.city
-country=data.address.country
-document.getElementById('city').textContent=city
-});
-//get time
 const time=new Date();
-function gettime() {
-    const clock=new Date()
-    document.getElementById('clock').innerText=clock.toLocaleTimeString();
+//get locaion
+function getlocaion(){
+let lat;
+let lon
+    navigator.geolocation.getCurrentPosition(async (position) => {
+   lat = position.coords.latitude;
+   lon = position.coords.longitude;
+gettimePray(lon,lat);
+});
+
+
 }
-   setInterval(gettime, 100);
-     gettime()
-let month=time.getMonth+1
+
+let month=time.getMonth()+1
 //get prayer time
-city="Algeria"
-country="Algerias"
-function gettimePray(){fetch(`https://api.aladhan.com/v1/timingsByCity/${time.getDay()}-${month}-${time.getFullYear()}?city=${city}&country=${country}&method=19`)
+function gettimePray(lon,lat){fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=19`)
   .then((response) => response.json())
   .then((json) => {
     console.log(json.data)
@@ -38,41 +30,37 @@ function gettimePray(){fetch(`https://api.aladhan.com/v1/timingsByCity/${time.ge
     document.getElementById('dateh').textContent=json.data.date.hijri.date
     document.getElementById('datem').textContent=json.data.date.gregorian.date
     document.getElementById('dayw').textContent=json.data.date.gregorian.weekday.en
-    });
+   
+});
 
 }
+   
+//get time
 
-/*
-ciaddress
-: 
-ISO3166-2-lvl4
-: 
-"DZ-02"
-city
-: 
-"Chlef"
-country
-: 
-"Algeria"
-country_code
-: 
-"dz"
-county
-: 
-"Chlef District"
-neighbourhood
-: 9
-"Hay El Amel"
-postcode
-: 
-"02000"
-state
-: 
-"Chlef"
-suburb
-: 
-"Bocaa"*/
- 
-
-     gettimePray()
+function gettime() {
+    const clock=new Date()
+    document.getElementById('clock').innerText=clock.toLocaleTimeString();
+}  
   
+   setInterval(gettime, 100);
+     gettime()
+
+
+
+     navigator.geolocation.getCurrentPosition(async (position) => {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+
+  const res = await fetch(
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+  );
+  const data = await res.json();
+
+  const city =
+    data.address.city ||
+    data.address.town ||
+    data.address.village ||
+    data.address.state;
+
+  console.log("Your real city is:", city);
+});
