@@ -71,4 +71,4 @@ function gettime() {
    setInterval(gettime, 100);
      gettime()
 
-// getlocaion()
+getlocaion()
