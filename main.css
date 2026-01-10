@@ -236,7 +236,7 @@ padding: 10px;
 }
 
 
-@media (min-width:700px) {
+@media (min-width:700px) AND (max-width:991px) {
 #head{
     display: flex;
     justify-content: space-evenly;
@@ -277,6 +277,4 @@ padding: 10px;
 
 
 
-@media (min-width: 992px) and (max-width: 1200px) { 
 
-}
