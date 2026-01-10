@@ -15,14 +15,19 @@ body{
     border-radius: 10px;
     margin: auto;
    overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 #head{
-    width: 95%;
+    width: 91.7%;
+    height: 81px;
     display: flex;
     justify-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 5px;
     gap:10px;
     background-image: linear-gradient(45deg,#123456,black);
     border-top-right-radius: 10%;
@@ -30,17 +35,31 @@ body{
     background-size: 200% 200%;
     animation: stalat 10s linear infinite;
     transition: 2s;
+    overflow: hidden;
+    padding-left: 100px;
+    padding-right: 0;
 }
+#day{
+    height: 90%;
+   flex-basis: 400px;
+  flex-grow: grow;
+  border-radius: 5px;
+  padding:8px;
+}
+#clock{
+padding-left: 60px;}
 #salwat{
     animation: stalat 4s linear infinite;
-    transition: 2s;
+    background-size: 200% 200%;
+    /* transition: 2s; */
     display: flex;
     justify-content:space-between;
     padding: 5px;
     background-image: linear-gradient(045deg,rgb(0, 0, 0)10%,#123456 70% 100%);
     height: 80%;
+    width: 99.5%;
 }
-.salat{position: relative;
+.salat{
     width: 15%;
     height: 300px;
     border: #123456 3px solid;
@@ -51,11 +70,15 @@ body{
     justify-content: space-around;
     border-radius: 8px;
     background-image: linear-gradient(45deg,#123456,black);
-  
 }
-.time-salat{
+.time-salat{  
     font-size: 40px;
     height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:45px ;
 }
 .titel{
     width: 90%;
@@ -95,4 +118,165 @@ button{
     background-color: bisque;
     border: none;
     border-radius: 5px;
+}
+ .animations{
+animation: beforeresponse 1s linear infinite;
+background-image: linear-gradient(90deg,#000000,#8e8a8a35,#1a1a1a6d);
+background-size: 200% 200%;
+}
+
+@keyframes beforeresponse{
+    0%{
+        background-position: 0% 25%;
+ 
+    }  
+    25%{
+        background-position: 25% 25%;
+
+    }
+    
+    50%{
+        background-position: 100% 25%;
+ 
+    } 
+    75%{
+        background-position: 25% 25%;
+    }  100%{
+        background-position: 0% 25%;
+ 
+    }
+}
+/* هواتف صغيرة */
+@media (max-width: 480px) { 
+    #contaner{
+        background-image: linear-gradient(#00000000);
+    }
+    #head{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ padding: 0;
+ font-size: 15px;
+ overflow: visible;
+ border-radius: 60px 60px 00% 0%;
+width: 100%;
+    }
+    #head #clock{
+        font-size: 17px;
+        padding: 0;
+        padding-top: 10px;
+    }
+      #head #day{
+        width: 90%;
+        display: flex;
+        justify-content: space-around;
+        font-size: 10px;
+
+      }
+    #salwat{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+    background-image: linear-gradient(180deg,rgb(0, 0, 0)10%,#123456 55% 60% ,rgb(0, 0, 0)70% 100%);
+padding: 10px;
+    }
+    .salat{
+        width: 90%;
+        height:14% ;
+    }
+    .titel{
+        font-size: 20px;
+    }
+    .time-salat{
+        font-size: 25px;
+    }
+}
+@media (min-width:481px) AND (max-width:700px) {
+    
+#head{
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+}
+    #salwat{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        background-image: linear-gradient(180deg,rgb(0, 0, 0)10% 30%,#123456 55% 60% ,rgb(0, 0, 0)70% 100%);
+
+    }
+    .time-salat{
+        font-size: 55px;
+    }
+    .titel{
+        font-size: 50px;
+    }
+    .salat{
+        width: 95%;
+        height: 95%;
+    }
+    #head{
+        display: flex;
+        justify-content: space-between;
+    }
+    #day{display: flex;
+        flex-direction: column;
+        width: 90px;
+        background-image: none;
+        align-items: center;
+        font-size: 15px;
+    }
+    #clock{
+        width: 300px;
+        font-size: 30px;
+        padding: 0;
+    }
+}
+
+
+@media (min-width:700px) {
+#head{
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+}
+    #salwat{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        background-image: linear-gradient(180deg,rgb(0, 0, 0)10% 30%,#123456 55% 60% ,rgb(0, 0, 0)70% 100%);
+
+    }
+    .time-salat{
+        font-size: 80px;
+    }
+    .titel{
+        font-size: 50px;
+    }
+    .salat{
+        width: 95%;
+        height: 95%;
+    }
+    #head{
+        display: flex;
+        justify-content: space-between;
+    }
+    #day{display: flex;
+        flex-direction: column;
+        width: 100px;
+        background-image: none;
+        align-items: center;
+    }
+    #clock{
+        font-size: 30px;
+    }
+ }
+
+
+
+
+
+@media (min-width: 992px) and (max-width: 1200px) { 
+
 }

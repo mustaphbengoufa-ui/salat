@@ -1,6 +1,19 @@
 let country;
 let city;
-
+let salawat={
+ Fajr:"الفجر",
+ Dhuhr:"الظهر",
+ asr:"العصر",
+ Maghrib:"المغرب",
+ Isha:"العشاء",
+ Sunrise:"الشروق"
+}
+ document.getElementById('f').textContent=salawat.Fajr
+ document.getElementById('d').textContent=salawat.Dhuhr
+ document.getElementById('a').textContent=salawat.asr
+ document.getElementById('m').textContent=salawat.Maghrib
+ document.getElementById('i').textContent=salawat.Isha
+ document.getElementById('s').textContent=salawat.Sunrise
 const time=new Date();
 //get locaion
 function getlocaion(){
@@ -17,9 +30,22 @@ gettimePray(lon,lat);
 
 let month=time.getMonth()+1
 //get prayer time
-function gettimePray(lon,lat){fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=19`)
-  .then((response) => response.json())
+function gettimePray(lon,lat){
+  document.querySelectorAll(".salat").forEach(el => {
+  el.classList.add("animations");
+});
+document.getElementById('day').classList.add('animations')
+fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=19`)
+  .then((response) => {
+
+    return response.json()
+})
   .then((json) => {
+    document.querySelectorAll(".salat").forEach(el => {
+  el.classList.remove("animations");
+});
+document.getElementById('day').classList.remove('animations')
+
     console.log(json.data)
     document.getElementById('fajer').textContent=json.data.timings.Fajr
     document.getElementById('dohr').innerHTML=json.data.timings.Dhuhr
@@ -45,23 +71,4 @@ function gettime() {
    setInterval(gettime, 100);
      gettime()
 
-
-
-     navigator.geolocation.getCurrentPosition(async (position) => {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
-
-  const res = await fetch(
-    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
-  );
-  const data = await res.json();
-
-  const city =
-    data.address.city ||
-    data.address.town ||
-    data.address.village ||
-    data.address.state;
-
-  console.log("Your real city is:", city);
-});
-getlocaion()
+// getlocaion()
