@@ -109,16 +109,6 @@ padding-left: 60px;}
  
     }
 }
-button{
-    position: absolute;
-    bottom: 100px;
-    right: 50%;
-    color: black;
-    padding: 3px;
-    background-color: bisque;
-    border: none;
-    border-radius: 5px;
-}
  .animations{
 animation: beforeresponse 1s linear infinite;
 background-image: linear-gradient(90deg,#000000,#8e8a8a35,#1a1a1a6d);
