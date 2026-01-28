@@ -296,7 +296,7 @@ padding: 10px;
     font-weight: bolder;
     border-radius: 20px;
     border: none;
-    background-color:   var(--main--color);
+    background-color:#123456;
 }
 #blur{
     width: 100%;
