@@ -8,6 +8,8 @@ let salawat={
  Isha:"العشاء",
  Sunrise:"الشروق"
 }
+let blur1=document.getElementById('blur')
+
  document.getElementById('f').textContent=salawat.Fajr
  document.getElementById('d').textContent=salawat.Dhuhr
  document.getElementById('a').textContent=salawat.asr
@@ -19,21 +21,31 @@ const time=new Date();
 function getlocaion(){
 let lat;
 let lon
+navigator.permissions.query({ name: 'geolocation' })
+.then(result => {
+  if (result.state === 'granted') {
+    console.log("الموقع الجغرافي مفعل ✅");
+  } else if (result.state === 'denied') {
+   blur1.style.display="block"
+  } else {
+    console.log("لم يُحدد بعد ⏳");
+  }
+});
     navigator.geolocation.getCurrentPosition(async (position) => {
    lat = position.coords.latitude;
    lon = position.coords.longitude;
 gettimePray(lon,lat);
 });
-
+ 
 
 }
-
-let month=time.getMonth()+1
-//get prayer time
-function gettimePray(lon,lat){
   document.querySelectorAll(".salat").forEach(el => {
   el.classList.add("animations");
 });
+let month=time.getMonth()+1
+//get prayer time
+function gettimePray(lon,lat){
+
 document.getElementById('day').classList.add('animations')
 fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=19`)
   .then((response) => {
@@ -46,7 +58,6 @@ fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&metho
 });
 document.getElementById('day').classList.remove('animations')
 
-    console.log(json.data)
     document.getElementById('fajer').textContent=json.data.timings.Fajr
     document.getElementById('dohr').innerHTML=json.data.timings.Dhuhr
     document.getElementById('asr').textContent=json.data.timings.Asr
@@ -68,7 +79,26 @@ function gettime() {
     document.getElementById('clock').innerText=clock.toLocaleTimeString();
 }  
   
-   setInterval(gettime, 100);
+   setInterval(gettime, 1000);
      gettime()
 
-getlocaion()
+
+
+function bluedisplay(){
+  blur1.style.display="none"
+
+    navigator.permissions.query({ name: 'geolocation' })
+.then(result => {
+  if (result.state === 'granted') {
+     getlocaion()
+    console.log("الموقع الجغرافي مفعل ✅");
+    return 0;
+  } else if (result.state === 'denied') {
+   blur1.style.display="block"
+  } else {
+    console.log("لم يُحدد بعد ⏳");
+  }
+});
+  }
+
+  getlocaion()
